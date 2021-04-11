@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
@@ -37,6 +38,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperementalCoroutinesApi"
     }
 }
 
@@ -71,4 +73,17 @@ dependencies {
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+
+    //Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+    implementation "android.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
+    kapt "android.hilt:hilt-compiler:$hiltAndroidXVersion"
+
+    //Data Store
+    implementation "androidx.datastore:datastore-preferences:$dataStoreVersion"
+}
+
+kapt {
+    correctErrorTypes true
 }
